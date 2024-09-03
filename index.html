@@ -31,9 +31,10 @@
   }
 
   .container {
+    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
   }
 
   header {
@@ -53,12 +54,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 15px 0;
   }
 
   .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
@@ -70,46 +71,64 @@
   }
 
   .nav-links {
-    display: flex;
-    gap: 30px;
+    display: none;
   }
 
-  .nav-links a {
-    text-decoration: none;
-    color: var(--text-color);
-    font-weight: 400;
-    transition: color 0.3s ease;
-    position: relative;
+  .menu-toggle {
+    display: block;
+    font-size: 24px;
+    color: var(--primary-color);
+    cursor: pointer;
   }
 
-  .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -5px;
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
     left: 0;
-    background-color: var(--accent-color);
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: all 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: 1001;
   }
 
-  .nav-links a:hover::after {
-    visibility: visible;
-    transform: scaleX(1);
+  .mobile-menu.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .mobile-menu a {
+    color: var(--white);
+    font-size: 24px;
+    text-decoration: none;
+    margin: 20px 0;
+    transition: color 0.3s ease;
+  }
+
+  .mobile-menu a:hover {
+    color: var(--accent-color);
+  }
+
+  .close-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: var(--white);
+    cursor: pointer;
   }
 
   .hero {
     background-image: url('https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 80px;
+    justify-content: center;
+    padding-top: 60px;
     position: relative;
   }
 
@@ -125,24 +144,24 @@
 
   .hero-content {
     background-color: rgba(255,255,255,0.9);
-    padding: 50px;
+    padding: 30px;
     border-radius: 8px;
-    max-width: 600px;
-    margin-left: 10%;
+    max-width: 90%;
     position: relative;
     z-index: 1;
+    text-align: center;
   }
 
   .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
     margin-bottom: 20px;
     color: var(--primary-color);
   }
 
   .hero p {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 30px;
   }
 
@@ -176,17 +195,15 @@
 
   .cta-button:hover {
     background-color: var(--secondary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
   .section-title {
     text-align: center;
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
     color: var(--primary-color);
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     position: relative;
   }
 
@@ -196,18 +213,18 @@
     width: 50px;
     height: 3px;
     background-color: var(--accent-color);
-    margin: 20px auto 0;
+    margin: 15px auto 0;
   }
 
   .products {
-    padding: 100px 0;
+    padding: 60px 0;
     background-color: var(--white);
   }
 
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
 
   .product-card {
@@ -216,23 +233,17 @@
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
-    position: relative;
   }
 
   .product-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
   }
 
   .product-image {
     width: 100%;
-    height: 250px;
+    height: 200px;
     object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-
-  .product-card:hover .product-image {
-    transform: scale(1.05);
   }
 
   .product-info {
@@ -241,7 +252,7 @@
 
   .product-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 10px;
     color: var(--primary-color);
@@ -280,32 +291,21 @@
   }
 
   .testimonials {
-    padding: 100px 0;
+    padding: 60px 0;
     background-color: var(--background-color);
-  }
-
-  .testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
   }
 
   .testimonial-card {
     background-color: var(--white);
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-  }
-
-  .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    margin-bottom: 30px;
   }
 
   .testimonial-text {
     font-style: italic;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .testimonial-author {
@@ -316,25 +316,22 @@
   footer {
     background-color: var(--primary-color);
     color: var(--white);
-    padding: 50px 0;
+    padding: 40px 0;
   }
 
   .footer-content {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .footer-section {
-    flex: 1;
-    margin-right: 30px;
     margin-bottom: 30px;
   }
 
   .footer-section h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 18px;
+    margin-bottom: 15px;
   }
 
   .footer-section ul {
@@ -358,6 +355,7 @@
   .social-icons {
     display: flex;
     gap: 15px;
+    margin-top: 15px;
   }
 
   .social-icons a {
@@ -372,24 +370,64 @@
 
   .copyright {
     text-align: center;
-    padding-top: 30px;
+    padding-top: 20px;
     border-top: 1px solid rgba(255,255,255,0.1);
-    margin-top: 30px;
+    margin-top: 20px;
+    font-size: 14px;
   }
 
-  @media (max-width: 768px) {
-    .hero-content {
-      margin-left: 5%;
-      margin-right: 5%;
+  @media (min-width: 768px) {
+    .nav-links {
+      display: flex;
+      gap: 30px;
     }
 
-    .nav-links {
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 400;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+
+    .menu-toggle {
       display: none;
     }
 
-    .product-grid,
-    .testimonial-grid {
-      grid-template-columns: 1fr;
+    .hero-content {
+      max-width: 600px;
+      padding: 50px;
+    }
+
+    .hero h1 {
+      font-size: 40px;
+    }
+
+    .hero p {
+      font-size: 18px;
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-content {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    .footer-section {
+      flex: 1;
+      margin-right: 30px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 </style>
@@ -405,13 +443,22 @@
           <a href="/contact">Contact</a>
           <a href="/cart">Cart</a>
         </div>
+        <div class="menu-toggle" id="menuToggle">☰</div>
       </nav>
     </div>
   </header>
 
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-menu" id="closeMenu">×</div>
+    <a href="/products">Products</a>
+    <a href="/about">About</a>
+    <a href="/contact">Contact</a>
+    <a href="/cart">Cart</a>
+  </div>
+
   <main>
     <section class="hero">
-      <div class="hero-content" data-aos="fade-right">
+      <div class="hero-content" data-aos="fade-up">
         <h1>Elevate Your Skincare Routine</h1>
         <p>Discover our premium collection of lotions and creams, scientifically formulated to nourish and rejuvenate your skin.</p>
         <a href="/products" class="cta-button">Explore Products</a>
@@ -423,7 +470,7 @@
         <h2 class="section-title" data-aos="fade-up">Our Best Sellers</h2>
         <div class="product-grid">
           <div class="product-card" data-aos="fade-up">
-            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Hydrating Day Cream in a white jar with green leaf design" class="product-image" width="300" height="250">
+            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Hydrating Day Cream in a white jar with green leaf design" class="product-image" width="300" height="200">
             <div class="product-info">
               <h3 class="product-title">Advanced Hydrating Day Cream</h3>
               <p class="product-description">Intensely moisturizing formula with hyaluronic acid and vitamins.</p>
@@ -432,7 +479,7 @@
             </div>
           </div>
           <div class="product-card" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Nourishing Night Serum in a dark glass bottle with dropper" class="product-image" width="300" height="250">
+            <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Nourishing Night Serum in a dark glass bottle with dropper" class="product-image" width="300" height="200">
             <div class="product-info">
               <h3 class="product-title">Rejuvenating Night Serum</h3>
               <p class="product-description">Powerful anti-aging serum with retinol and peptides.</p>
@@ -441,21 +488,12 @@
             </div>
           </div>
           <div class="product-card" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Revitalizing Eye Cream in a small, elegant jar" class="product-image" width="300" height="250">
+            <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Revitalizing Eye Cream in a small, elegant jar" class="product-image" width="300" height="200">
             <div class="product-info">
               <h3 class="product-title">Intensive Eye Renewal Cream</h3>
               <p class="product-description">Targets fine lines and dark circles with caffeine and niacinamide.</p>
               <p class="product-price">$39.99</p>
               <button class="add-to-cart" data-product-id="3">Add to Cart</button>
-            </div>
-          </div>
-          <div class="product-card" data-aos="fade-up" data-aos-delay="300">
-            <img src="https://images.unsplash.com/photo-1617897903246-719242758050?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80" alt="Soothing Body Lotion in a pump bottle with lavender design" class="product-image" width="300" height="250">
-            <div class="product-info">
-              <h3 class="product-title">Ultra-Nourishing Body Lotion</h3>
-              <p class="product-description">Luxurious body lotion with shea butter and essential oils.</p>
-              <p class="product-price">$34.99</p>
-              <button class="add-to-cart" data-product-id="4">Add to Cart</button>
             </div>
           </div>
         </div>
@@ -473,10 +511,6 @@
           <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
             <p class="testimonial-text">"I've tried many eye creams, but the Intensive Eye Renewal Cream is by far the best. My dark circles are visibly reduced!"</p>
             <p class="testimonial-author">- Michael T.</p>
-          </div>
-          <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
-            <p class="testimonial-text">"The Ultra-Nourishing Body Lotion leaves my skin feeling silky smooth. The scent is divine too!"</p>
-            <p class="testimonial-author">- Sarah L.</p>
           </div>
         </div>
       </div>
@@ -544,16 +578,28 @@
     AOS.init({
       duration: 1000,
       once: true,
-      offset: 100
+      offset: 50
     });
 
     const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
     window.addEventListener('scroll', () => {
       if (window.scrollY > 100) {
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
       }
+    });
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+
+    closeMenu.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
     });
 
     const addToCartButtons = document.querySelectorAll('.add-to-cart');
